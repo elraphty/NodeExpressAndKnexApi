@@ -60,6 +60,19 @@ app.put('/todos/:id', (req, res) => {
         })
 });
 
+app.delete('/todos/:id', (req, res) => {
+    knex('todos')
+        .where('id', req.params.id)
+        .delete()
+        .then( ( )=> {
+            knex.select()
+                .from('todos')
+                .then(function(todos) {
+                    res.send(todos);
+            });
+        })
+});
+
 
 app.listen(PORT, () => {
     console.log(`App running ${PORT}`);
